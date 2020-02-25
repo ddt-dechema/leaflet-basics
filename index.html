@@ -62,7 +62,7 @@
             console.error(reject)
             })
         .then((geojson) => {
-            emitterslayer[type] = L.geoJson(geojson, {
+            emitterslayer= L.geoJson(geojson, {
                     pointToLayer: function (feature, latlng) {
                         return L.circleMarker(latlng, {
                             radius: 30,
@@ -75,7 +75,7 @@
                         }).bindPopup(addPopupHandler(feature))
                     }
                 })
-                emitterslayer[type].addTo(map)
+                emitterslayer.addTo(map)
             })
 
         // Layers Control
