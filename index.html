@@ -46,9 +46,6 @@
             "green": green
         };
 
-        var overlayMaps = {
-            "Cities": cities
-        };
 
         // Test eigene art, GeoJSONs einzuladen
         let emitters;
@@ -81,9 +78,16 @@
             var emitterslayer = {
             "Emitters": emitters
         };
+layerControl.addOverlay(emitterslayer, "emitters");
+
+var overlayMaps = {
+            "Cities": cities,
+            "Emitters": emitters
+        };
+
 
         // Layers Control
-        L.control.layers(baseMaps, overlayMaps, emitterslayer).addTo(map);
+        L.control.layers(baseMaps, overlayMaps).addTo(map);
     </script>
 </body>
 
