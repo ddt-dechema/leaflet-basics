@@ -3,6 +3,12 @@
     <title>A Leaflet map!</title>
     <link rel="stylesheet" href="vendor/leaflet.css" />
     <script src="vendor/leaflet.js"></script>
+    <script src="https://unpkg.com/geotiff@0.4.1/dist/main.js"></script>
+    <script src="https://unpkg.com/plotty@0.2.0/src/plotty.js"></script>
+    <script src="leaflet-geotiff.js"></script>
+    <!-- Load any renderer you need -->
+    <script src="leaflet-geotiff-plotty.js"></script>
+    
     <style>
         #map {
             height: 100%
@@ -50,6 +56,8 @@ var overlayMaps = {
             "Cities": cities,
         };
 
+// Create map
+var layer = L.leafletGeotiff(url, options).addTo(map);
 
         // Layers Control
         L.control.layers(baseMaps, overlayMaps).addTo(map);
