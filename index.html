@@ -50,8 +50,36 @@
             "Cities": cities
         };
 
+        // Test eigene art, GeoJSONs einzuladen
+        let emitterslayer=L.geoJSON().addTo(map)
+
+        fetch('data.json')
+        .then(
+            (response) => {
+            return response.json()
+            },
+            (reject) => {
+            console.error(reject)
+            })
+        .then((geojson) => {
+                markers[type] = L.geoJson(geojson, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, {
+                            radius: 30,
+                            color:  "#99d1e1",
+                            /*fillColor: feature.properties.color,*/
+                            fillColor: "#99d1e1",
+                            weight: 1,
+                            opacity: 0.7,
+                            fillOpacity: 0.4
+                        }).bindPopup(addPopupHandler(feature))
+                    }
+                })
+                markers[type].//addTo(map)
+            })
+
         // Layers Control
-        L.control.layers(baseMaps, overlayMaps).addTo(map);
+        L.control.layers(baseMaps, overlayMaps, emitterslayer).addTo(map);
     </script>
 </body>
 
