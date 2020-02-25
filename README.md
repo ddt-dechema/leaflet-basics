@@ -4,4 +4,4 @@ https://ddt-dechema.github.io/leaflet-basics/
 getting back to basics
 
 # sources
-initialize: https://github.com/stuartmatthews/leaflet-geotiff
+initialize: https://leafletjs.com/examples/layers-control/
