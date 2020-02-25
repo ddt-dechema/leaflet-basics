@@ -38,7 +38,7 @@
         var map = L.map('map', {
             center: [39.73, -104.99],
             zoom: 10,
-            layers: [light, cities, emitterslayer]
+            layers: [light, cities, ]
         });
 
         var baseMaps = {
@@ -51,7 +51,7 @@
         };
 
         // Test eigene art, GeoJSONs einzuladen
-        var emitterslayer=L.geoJSON().addTo(map)
+        let emitters=L.geoJSON().addTo(map)
 
         fetch('data.json')
         .then(
@@ -62,7 +62,7 @@
             console.error(reject)
             })
         .then((geojson) => {
-            emitterslayer= L.geoJson(geojson, {
+            emitters= L.geoJson(geojson, {
                     pointToLayer: function (feature, latlng) {
                         return L.circleMarker(latlng, {
                             radius: 30,
@@ -75,8 +75,12 @@
                         })
                     }
                 })
-                emitterslayer.addTo(map)
+                emitters.addTo(map)
             })
+
+            var emitterslayer = {
+            "Emitters": emitters
+        };
 
         // Layers Control
         L.control.layers(baseMaps, overlayMaps, emitterslayer).addTo(map);
