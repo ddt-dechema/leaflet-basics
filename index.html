@@ -38,7 +38,7 @@
         var map = L.map('map', {
             center: [39.73, -104.99],
             zoom: 10,
-            layers: [light, cities, ]
+            layers: [light, cities]
         });
 
         var baseMaps = {
@@ -51,7 +51,7 @@
         };
 
         // Test eigene art, GeoJSONs einzuladen
-        let emitters=L.geoJSON().addTo(map)
+        let emitters;
 
         fetch('data.json')
         .then(
