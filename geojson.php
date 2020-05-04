@@ -24,4 +24,4 @@
 
        $geojson = '{"type":"Feature","properties":{},"geometry":'.$rows.'}';
        echo $geojson;
-    
+    ?>
