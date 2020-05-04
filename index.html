@@ -1,82 +1,22 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>A Leaflet map!</title>
-    <link rel="stylesheet" href="vendor/leaflet.css" />
-    <script src="vendor/leaflet.js"></script>
-    <!--files to load for geotiffing-->
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/geotiff@0.4.1/dist/main.js"></script>
-    <script src="https://unpkg.com/plotty@0.2.0/src/plotty.js"></script>
-    <script src="leaflet-geotiff.js"></script>
-    <!-- Load any renderer you need -->
-    <script src="leaflet-geotiff-plotty.js"></script>
+	<title>Leaflet GeoJSON Example</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script type="text/javascript" src="leaflet.ajax.js"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
     
-    <style>
-        #map {
-            height: 100%
-        }
-    </style>
-</head>
-
 <body>
+	<div id="map" style="width: 600px; height: 400px"></div>
+	
+	<script src="sample-geojson.js"></script>
+	<script src="main.js"></script>
 
-    <div id="map"></div>
-
-    <script>
-
-//https://leafletjs.com/examples/layers-control/
-
-
-          var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-            denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-            aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-            golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
-
-    var cities = L.layerGroup([littleton, denver, aurora, golden]);
-            //            Now let’s create those base layers and add the default ones to the map:
-
-
-        var light = L.tileLayer('https://api.mapbox.com/styles/v1/johnmichel/ciobach7h0084b3nf482gfvvr/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiam9obm1pY2hlbCIsImEiOiJjaW9iOW1vbHUwMGEzdnJseWNranhiMHpxIn0.leVOjMBazNl6v4h9MT7Glw', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18}),
-            green = L.tileLayer('https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=9a85f60a13be4bf7bed59b5ffc0f4d86', {
-                    attribution: 'Maps &copy; <a href="https://www.thunderforest.com">Thunderforest</a>, Data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, <a href="http://prtr.ec.europa.eu">E-PRTR</a>'
-                });
-
-        var map = L.map('map', {
-            center: [39.73, -104.99],
-            zoom: 10,
-            layers: [light, cities]
-        });
-
-        var baseMaps = {
-            "Light": light,
-            "green": green
-        };
-
-var overlayMaps = {
-            "Cities": cities,
-        };
-
-// Create map
-var windSpeed = L.leafletGeotiff(
-            url='tif/wind_speed.tif',
-            options={band: 0,
-                displayMin: 0,
-                displayMax: 30,
-                name: 'Wind speed',
-                colorScale: 'rainbow',
-                clampLow: false,
-                clampHigh: true,
-                //vector:true,
-                arrowSize: 20,
-            }
-        ).addTo(map);
-
-        // Layers Control
-        L.control.layers(baseMaps, overlayMaps).addTo(map);
-    </script>
-    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 </body>
-
 </html>
