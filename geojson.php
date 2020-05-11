@@ -2,23 +2,23 @@
 $conn = null;
 
 //for online
-$conn = new mysqli('85.10.205.173:3306','ddtdechema','DECHEMA14','potanadev');
+$conn = new mysqli('p:db4free.net:3306','ddtdechema','DECHEMA14','potanadev');
 //for localhost
-// $conn = new mysqli('localhost', 'ddtdechema', 'DECHEMA14', 'potanadev');
+//$conn = new mysqli('localhost', 'ddtdechema', 'DECHEMA14', 'potanadev');
 
 $sql = "SELECT ST_AsGeoJSON(ST_GeomFromText(geofence)) AS geometry, 
      ci.iso_a3,
      country_name_en,
      MTonnes
-     FROM country_borders cb 
-     join country_information ci on cb.iso_a3=ci.iso_a3 
-     join country_co2emissions emi on ci.iso_a2=emi.iso_a2 
+     FROM potanadev.country_borders cb 
+     join potanadev.country_information ci on cb.iso_a3=ci.iso_a3 
+     join potanadev.country_co2emissions emi on ci.iso_a2=emi.iso_a2 
      
-      ";
+      ";    
+      //>50 <=69
 // $sql="SELECT ST_AsGeoJSON(ST_GeomFromText(geofence)) as geometry FROM `country_borders`  ";
 
 $res = $conn->query($sql);
-$conn->close();
 
 $data = array(); //setting up an empty PHP array for the data to go into
 while ($r = $res->fetch_assoc())
@@ -67,5 +67,6 @@ print_r($final_data);
 //  array_push($geojson, $geojson_row);
 //$geojson = '{"type":"Feature","properties":{ "MTonnes": '.$MTOnnes.', "country_name_en":"'.$country_name_en.'", "iso_a3": "'.$iso_a3.'"},"geometry":'.$rows.'}';
 //  echo $geojson;
+$conn->close();
 
 ?>
