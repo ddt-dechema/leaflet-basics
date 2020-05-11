@@ -12,10 +12,7 @@ $sql = "SELECT ST_AsGeoJSON(ST_GeomFromText(geofence)) AS geometry,
      MTonnes
      FROM potanadev.country_borders cb 
      join potanadev.country_information ci on cb.iso_a3=ci.iso_a3 
-     join potanadev.country_co2emissions emi on ci.iso_a2=emi.iso_a2 
-     
-      ";    
-      //>50 <=69
+     join potanadev.country_co2emissions emi on ci.iso_a2=emi.iso_a2";
 // $sql="SELECT ST_AsGeoJSON(ST_GeomFromText(geofence)) as geometry FROM `country_borders`  ";
 
 $res = $conn->query($sql);
